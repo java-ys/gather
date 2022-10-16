@@ -1,0 +1,320 @@
+
+{
+	"info": {
+		"_postman_id": "fde69c66-a473-4d41-97e8-ac3517644a3f",
+		"name": "配置",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "绝对优先配置新增",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+					},
+					{
+						"key": "token",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "grayVersion",
+						"value": "W_operation_709"
+					},
+					{
+						"key": "Origin",
+						"value": "http://10.3.64.188"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.3.64.188/m2-web-general/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cityName\": \"南京市\",\r\n    \"cityUuid\": 408,\r\n    \"cityCode\": \"320100\",\r\n    \"dispatchGroupDtos\": [\r\n        {\r\n            \"groupId\": \"ygrscs\",\r\n            \"groupName\": \"预估人数测试\",\r\n            \"absolutelyDispatch\": 1,\r\n            \"onlineStatus\": 1,\r\n            \"crowdState\": 1\r\n        }\r\n    ]\r\n}"
+				},
+				"url": "http://10.3.64.187/route-admin-api/config/absolutelyUserGroupStrategy/save"
+			},
+			"response": []
+		},
+		{
+			"name": "绝对优先配置列表",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+					},
+					{
+						"key": "token",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "grayVersion",
+						"value": "W_operation_709"
+					},
+					{
+						"key": "Origin",
+						"value": "http://10.3.64.188"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.3.64.188/m2-web-general/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"cityCode\":\"320100\",\"useStatus\":1,\"currPage\":1,\"pageSize\":10}"
+				},
+				"url": "http://10.3.64.187/route-admin-api/config/absolutelyUserGroupStrategy/pageQuery"
+			},
+			"response": []
+		},
+		{
+			"name": "绝对优先配置群组查询",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+					},
+					{
+						"key": "token",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "grayVersion",
+						"value": "W_operation_709"
+					},
+					{
+						"key": "Origin",
+						"value": "http://10.3.64.188"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.3.64.188/m2-web-general/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"uuid\":\"c3006b8823c3454caba110a866d30ec6\",\"currPage\":1,\"pageSize\":10}"
+				},
+				"url": "http://10.3.64.187/route-admin-api/config/absolutelyUserGroupStrategy/groupPageQuery"
+			},
+			"response": []
+		},
+		{
+			"name": "绝对优先更新状态",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+					},
+					{
+						"key": "token",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "grayVersion",
+						"value": "W_operation_709"
+					},
+					{
+						"key": "Origin",
+						"value": "http://10.3.64.188"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.3.64.188/m2-web-general/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"uuid\":\"c3006b8823c3454caba110a866d30ec6\",\"useStatus\":1}"
+				},
+				"url": "http://10.3.64.187/route-admin-api/config/absolutelyUserGroupStrategy/updateStatus"
+			},
+			"response": []
+		},
+		{
+			"name": "绝对优先更新群组",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Pragma",
+						"value": "no-cache"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Authorization",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"
+					},
+					{
+						"key": "token",
+						"value": "4051df8d-8d22-44e1-9755-b54c4eae5a47"
+					},
+					{
+						"key": "grayVersion",
+						"value": "W_operation_709"
+					},
+					{
+						"key": "Origin",
+						"value": "http://10.3.64.188"
+					},
+					{
+						"key": "Referer",
+						"value": "http://10.3.64.188/m2-web-general/"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "zh-CN,zh;q=0.9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dispatchGroupDtos\": [\r\n        {\r\n            \"uuid\": \"5e2d6b0f2f174abeab2ae51066afa8ca\",\r\n            \"strategyUuid\": \"c3006b8823c3454caba110a866d30ec6\",\r\n            \"groupId\": \"ygrscs\",\r\n            \"groupName\": \"预估人数测试\",\r\n            \"absolutelyDispatch\": 1,\r\n            \"onlineStatus\": 1,\r\n            \"crowdState\": 1\r\n        },\r\n        {\r\n            \"strategyUuid\": \"c3006b8823c3454caba110a866d30ec6\",\r\n            \"groupId\": \"dxmycs2\",\r\n            \"groupName\": \"下单城市南京\",\r\n            \"nearbyDispatch\": 1,\r\n            \"onlineStatus\": 1,\r\n            \"crowdState\": 1\r\n        }\r\n    ]\r\n}"
+				},
+				"url": "http://10.3.64.187/route-admin-api/config/absolutelyUserGroupStrategy/updateGroup"
+			},
+			"response": []
+		}
+	]
+}

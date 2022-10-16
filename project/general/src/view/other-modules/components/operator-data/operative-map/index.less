@@ -1,0 +1,783 @@
+.pagetitle{
+  font-size: 16px;
+  color: #333;
+  height: 46px;
+  line-height: 46px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:-15px;
+  .closearrow{
+    font-size: 14px;
+    color: #2D8CF0;
+    font-weight: 500;
+    line-height: 20px;
+    cursor: pointer;
+    position: relative;
+    bottom:-10px;
+  }
+}
+#container{
+  height:100%;
+}
+.maprea {
+    position: relative;
+    width: 100%;
+    height: 82vh;
+    overflow: hidden;
+    .amap-page-container {
+      position: absolute;
+      top: 0;
+      left: 350px;
+      bottom: 0;
+      right: 0;
+      height: 82vh;
+      min-width:850px;
+    }
+    .leftshadow {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 83vh;
+      // width: 220px;
+      padding:0 20px 50px 0;
+      background: rgba(255, 255, 255, 1);
+      z-index: 88;
+      overflow-y: scroll;
+      border-top:1px solid #f3f3f3;
+      &::-webkit-scrollbar {//滚动条的宽度
+        width:0px;
+        height:0px;
+      }
+      &::-webkit-scrollbar-track-piece { //滚动条凹槽的颜色，还可以设置边框属性
+        // background-color:#f8f8f8;
+        background-color:rgba(0,0,0,0);
+      }
+      &::-webkit-scrollbar-thumb {//滚动条的设置
+        background-color:rgba(0,0,0,0);
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color:rgba(0,0,0,0);
+      }
+      .locationquery {
+        padding-top:15px;
+        .selectfont{
+          font-size: 16px;
+          color: #666;
+          height: 30px;
+          line-height: 30px;
+          letter-spacing: 1px;
+          font-weight: 600;
+          margin-bottom:15px;
+          &::before {
+            display: inline-block;
+            content: "";
+            width: 2px;
+            height: 15px;
+            background: #2d8cf0;
+            margin-right: 7px;
+            position: relative;
+            top: 1px;
+          }
+        }
+        .selectline{
+          padding-bottom:15px;
+          .selectmargin{
+            margin-bottom: 18px;
+          }
+          .selectidx {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 0 auto;
+            .ivu-checkbox-group{
+              width: 100%;
+            }
+            .margin-right-style {
+              margin-right: 5px;
+              .ivu-checkbox {
+                margin-right: 30px;
+              }
+              .checkboxstyle{
+                font-size: 14px;
+                color: #2d8cf0;
+                padding: 3px 33px;
+                border: 1px solid #2d8cf0;
+                border-radius: 3px 3px;
+              }
+            }
+            .sortvcolum {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 10px;
+              label{
+                margin: 8px 0;
+                position: relative;
+              }
+              .ivu-checkbox {
+                margin-right: 30px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+              }
+              .specialstyle {
+                padding: 3px 33px;
+              }
+              .gropustyle{
+                .checkboxstyle{
+                  font-size: 14px;
+                  color: #666;
+                  border-radius: 3px 3px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  flex-direction: column;
+                  .imgstyle{
+                    width: 52px;
+                    height: 54px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    padding: 3px 5px;
+                    border: 1px solid #E7E6E6;
+                    color:#999;
+                  }
+                  p:last-child{
+                    margin-top: 10px;
+                  }
+                }
+              }
+            }
+          }
+          .selecttitles{
+            font-size: 14px;
+            color: #666666;
+            height: 30px;
+            line-height: 30px;
+            padding-right: 50px;
+          }
+        }
+        .disflexstyle{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .searchbtn{
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+      }
+      .borderbottom{
+        border-bottom: 1px solid #F3F3F3;
+        margin-bottom: 5px;
+      }
+      .searchipt {
+        padding: 20px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .treeselect {
+        max-height: 60vh;
+        padding-bottom: 100px;
+        overflow-y: auto;
+        background: #fff;
+        &::-webkit-scrollbar {
+          background-color: transparent;
+        }
+      }
+    }
+    .lefttopshadow{
+      position: absolute;
+      left: 390px;
+      top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      .btnstyle-shadow{
+        width: 60px;
+        height: 60px;
+        border-radius: 4px 4px;
+        background: #fff;
+        box-shadow: 0 2px 10px 0;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &.animatestyle{
+          .animated {
+            -webkit-animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-duration: 1s;
+            animation-fill-mode: both
+          }
+          @-webkit-keyframes rotateIn {
+            0% {
+              -webkit-transform: rotate(-200deg);
+              -webkit-transform-origin: center;
+              opacity: 0;
+              transform: rotate(-200deg);
+              transform-origin: center
+            }
+            to {
+              -webkit-transform: translateZ(0);
+              -webkit-transform-origin: center;
+              opacity: 1;
+              transform: translateZ(0);
+              transform-origin: center
+            }
+          }
+          @keyframes rotateIn {
+            0% {
+              -webkit-transform: rotate(-200deg);
+              -webkit-transform-origin: center;
+              opacity: 0;
+              transform: rotate(-200deg);
+              transform-origin: center
+            }
+            to {
+              -webkit-transform: translateZ(0);
+              -webkit-transform-origin: center;
+              opacity: 1;
+              transform: translateZ(0);
+              transform-origin: center
+            }
+          }
+          .rotateIn {
+            -webkit-animation-name: rotateIn;
+            animation-name: rotateIn
+          }
+        }
+      }
+    }
+    .leftbottomshadow{
+      position: absolute;
+      bottom: 20px;
+      left: 370px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      min-width:650px;
+      .detailexplain{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .extile{
+          color: #333;
+          font-size: 14px;
+        }
+        .smallbtnstyle{
+          width: 60px;
+          height: 30px;
+          text-align: center;
+          vertical-align: middle;
+          line-height: 30px;
+          font-size: 14px;
+          &.backbg_s{
+            color: #fff;
+            background: #151414;
+          }
+          &.backbg_h{
+            color: #000;
+            background: #fff;
+          }
+          &.backbg_t{
+            color: #000;
+            background: #fcd000;
+          }
+        }
+        &.margin_rights{
+          margin-right: 40px;
+        }
+        .survey{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          border-right: 1px solid #eee;
+          padding: 2px 10px;
+          span{
+            display: block;
+          }
+          .dots{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: block;
+            margin-right: 5px;
+          }
+          &.dots_s{
+            .dots{
+              background: #02BFA5;
+            }
+            .status-num{
+              color: #02BFA5;
+            }
+          }
+          &.dots_g{
+            .dots{
+              background: #448AFF;
+            }
+            .status-num{
+              color: #448AFF;
+            }
+          }
+          &.dots_f{
+            .dots{
+              background: #FF6E40;
+            }
+            .status-num{
+              color: #FF6E40 ;
+            }
+          }
+          &.dots_o{
+            .dots{
+              background: #CCCCCC ;
+            }
+            .status-num{
+              color: #999;
+            }
+          }
+          &.dots_a{
+            .dots{
+              background: #fcd000;
+            }
+            .status-num{
+              color: #fcd000;
+            }
+          }
+          .status-name,.status-num{
+            font-size: 16px;
+            color: #000;
+            display:inline-block;
+            min-width: 10px;
+          }
+          .status-name{
+            margin-right: 5px;
+          }
+          .status-num{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .ivu-checkbox-wrapper + span,
+    .ivu-checkbox + span {
+      font-size: 16px;
+    }
+    .rightshadow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 700px;
+      // height: 100px;
+      background: rgba(135, 206, 250, 0.9);
+      padding: 0 20px;
+      padding-bottom: 10px;
+      // display: flex;
+      // justify-content: space-between;
+      // align-items: center;
+      .right-rightmsg {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        .distancebet {
+          margin: 10px 0;
+        }
+      }
+      .right-leftdata {
+        width: 100%;
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .datafont {
+          font-size: 14px;
+        }
+      }
+      .radioarea {
+        display: flex;
+        justify-content: space-between;
+        &.middlepad{
+          padding: 10px 0;
+        }
+        &.botpad{
+          padding-bottom: 10px;
+        }
+        .radiosite {
+          .margin-left-style {
+            margin-left: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            .ivu-radio-wrapper {
+              margin-top: 8px;
+            }
+          }
+          .flexstyle{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+      }
+    }
+    .carsmsg{
+      position: absolute;
+      bottom: 0;
+      // left: 0;
+      right: -340px;
+      width: 320px;
+      height: 100%;
+      background: rgba(255, 255, 255, 1);
+      z-index: 200;
+      padding: 20px 0;
+      padding-top: 0;
+      transition: right 1s;
+      box-shadow: -1px -2px 10px rgba(0,0,0,.3);
+      overflow-y: scroll;
+      &::-webkit-scrollbar {//滚动条的宽度
+        // width:9px;
+        // height:9px;
+        // border-radius: 4.5px 4.5px;
+        width:0px;
+        height:0px;
+      }
+      &::-webkit-scrollbar-track-piece { //滚动条凹槽的颜色，还可以设置边框属性
+        // background-color:#f8f8f8;
+        background-color:rgba(0,0,0,0);
+      }
+      &::-webkit-scrollbar-thumb {//滚动条的设置
+        // background-color:#dddddd;
+        // background-clip:padding-box;
+        // min-height:28px;
+        background-color:rgba(0,0,0,0);
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        // background-color:#bbb;
+        background-color:rgba(0,0,0,0);
+      }
+    }
+    .animation{
+      right: 0;
+    }
+  }
+.vertical-center-modal{
+    .sendtitle{
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    .disstyle{
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px 0;
+        line-height: 24px;
+        .sentchoice{
+          color: #000;
+          font-size: 16px;
+          letter-spacing: 1px;
+            .choisitece{
+                margin-top: 10px;
+                color: #3385ff;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+    .messagedistance{
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+.floatmodal{
+  .torightarrow{
+    height: 100%;
+    margin-top: 40px;
+    &:hover{
+      cursor: pointer;
+      color: #3385ff;
+    }
+  }
+  .realtimeinfo{
+    .flexgrid{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      p{
+        font-size: 16px;
+        margin-right: 20px;
+        &.specialstyle{
+          color: #3385ff;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+    .midelmargin{
+      margin: 20px 0;
+    }
+  }
+  .discrtl{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .iconfont{
+      margin-right: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      .imgfont{
+        p{
+          text-align: center;
+          font-size: 14px;
+        }
+        img{
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: block;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+  .conttitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 18px;
+    padding-top: 20px;
+    // background: rgba(	135,206,250, .1);
+    background: #f2f2f2;
+    font-size: 15px;
+    .title_header{
+      color: #333;
+    }
+    .morethan{
+      color: #2D8CF0;
+      cursor: pointer;
+    }
+  }
+  .contents{
+    background: #fff;
+    padding: 10px 20px 30px;
+    .timecontmsg{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      .ennergy{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        p:first-child{
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 8px;
+        }
+        p:last-child{
+          font-size: 16px;
+          color: #2D8CF0;
+        }
+      }
+    }
+    .adressplace{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-top: 20px;
+      p:last-child{
+        margin-left: 6px;
+        color: #666;
+        font-size: 14px;
+      }
+    }
+    .drivermsg{
+      margin-top: 10px;
+      font-size: 14px;
+      .driver-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .hascolor{
+        color: #000;
+        font-weight: 600;
+      }
+      .blue-color{
+        color: #2D8CF0;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+.sitedetail{
+  .msgcontent{
+    .msgtitles{
+      font-size: 16px;
+      color: #000;
+      height: 60px;
+      padding: 20px;
+      letter-spacing: 1px;
+      background: #f2f2f2;
+    }
+    .msgfont{
+      font-size: 14px;
+      color: #000;
+      padding: 10px 20px;
+      letter-spacing: 1px;
+    }
+  }
+}
+.amap-ui-district-cluster-marker{
+	background-color: #fff;
+	border: 0px;
+	border-radius: 2px;
+}
+.amap-ui-district-cluster-marker.level_province .amap-ui-district-cluster-marker-body,
+.amap-ui-district-cluster-marker.level_country .amap-ui-district-cluster-marker-body,
+.amap-ui-district-cluster-marker.level_city .amap-ui-district-cluster-marker-body,
+.amap-ui-district-cluster-marker.level_district .amap-ui-district-cluster-marker-body{
+	background-color: #f8b03b !important;
+	border-radius: 0 2px 2px 0;
+}
+.amap-ui-district-cluster-marker:before{
+	border-top-color: #fff;
+	bottom: -12px;
+}
+.amap-ui-district-cluster-marker:after{
+	display: none;
+}
+.amap-ui-district-cluster-marker span{
+  display: inline !important;
+}
+.amap-logo{
+  display: none;
+  opacity:0 !important;
+}
+.amap-copyright {
+  opacity:0;
+}
+.listtabel{
+  .ivu-table-overflowY{
+    &::-webkit-scrollbar {
+      //滚动条的宽度
+      width: 9px;
+      height: 9px;
+      border-radius: 4.5px 4.5px;
+    }
+    &::-webkit-scrollbar-track-piece {
+      //滚动条凹槽的颜色，还可以设置边框属性
+      background-color: #f8f8f8;
+    }
+    &::-webkit-scrollbar-thumb {
+      // 滚动条的设置
+      background-color: #dddddd;
+      background-clip: padding-box;
+      min-height: 28px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #bbb;
+    }
+  }
+}
+.amap-page-container /deep/ {
+  .amap-scalecontrol{
+    right:70px !important;
+    left:auto !important;
+    bottom:30px !important;
+  }
+  .amap-ui-control-zoom{
+    width:36px;
+  }
+  .amap-ui-control-zoom a{
+    width:35px;
+    font-size: 20px;
+  }
+}
+.addmessage{
+  position: relative;
+  .iptfontnums{
+    position: absolute;
+    bottom:0;
+    right:-60px;
+  }
+}
+.small-shadow{
+  box-shadow: 1px 1px 6px #ddd;
+}
+.autocomplete-view {
+  position: absolute;
+  overflow: auto;
+  padding: 15px 20px 15px 18px;
+  top: 0;
+  left: -18px;
+  width: 370px;
+  background: #fff;
+  z-index: 100;
+  overscroll-behavior: contain;
+  &:focus-within {
+    bottom: 0;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.op-map_search-list {
+  margin-top: 5px;
+}
+.op-map_search-list-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 32px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  &::after {
+    content: attr(data-district);
+    margin-left: 5px;
+    color: #999;
+  }
+  &-empty {
+    color: #999;
+  }
+}
+.op-map_history {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  font-size: 16px;
+  color: #222;
+  font-weight: bold;
+}
+
+.op-map_fixed-right-tb {
+  .ivu-table-wrapper {
+    border: 0;
+  }
+  .ivu-table:after,
+  .ivu-table:before {
+    display: none;
+  }
+  .ivu-table-overflowY {
+    overscroll-behavior: contain;
+  }
+}
