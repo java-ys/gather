@@ -1149,3 +1149,462 @@ ex:
     git reset --hard  0c72e64
     将master指向所提交的id
 ```
+
+## 屏幕宽高获取
+```
+
+this.$el.offsetWidth
+window.pageYOffset
+window.pageXOffset
+this.$el.getBoundingClientRect()
+
+
+
+窗口相对于屏幕顶部距离 window.screenTop
+窗口相对于屏幕左边距离 window.screenLeft,
+屏幕分辨率的高 window.screen.height,
+屏幕分辨率的宽 window.screen.width,
+屏幕可用工作区高度 window.screen.availHeight,
+屏幕可用工作区宽度 window.screen.availWidth
+网页滚动距离顶部距离 document.body.scrollTop
+网页滚动距离左边距离 document.body.scrollLeft
+ 
+网页可见区域宽： document.body.clientWidth
+网页可见区域高： document.body.clientHeight
+网页可见区域宽： document.body.offsetWidth (包括边线的宽)
+网页可见区域高： document.body.offsetHeight (包括边线的高)
+网页正文全文宽： document.body.scrollWidth
+网页正文全文高： document.body.scrollHeight
+网页被卷去的高： document.body.scrollTop
+网页被卷去的左： document.body.scrollLeft
+
+对应的dom元素的宽高有以下几个常用的：
+元素的实际高度：document.getElementById("div").offsetHeight
+元素的实际宽度：document.getElementById("div").offsetWidth
+元素的实际距离左边界的距离：document.getElementById("div").offsetLeft
+元素的实际距离上边界的距离：document.getElementById("div").offsetTop
+
+
+window.getComputedStyle(dom元素,'伪类').属性名
+dom元素.clientHeight/clientWidth
+dom元素.offsetHeight/offsetWidth
+dom元素.scrollHeight/scrollWidth
+dom元素.style.height/width
+
+
+```
+
+## DOM
+
+```
+-nodeType
+
+
+ Node.ELEMENT_NODE(1);
+ Node.ATTRIBUTE_NODE(2);
+ Node.TEXT_NODE(3);
+ Node.CDATA_SECTION_NODE(4);
+ Node.ENTITY_REFERENCE_NODE(5);
+ Node.ENTITY_NODE(6);
+ Node.PROCESSING_INSTRUCTION_NODE(7); 
+ Node.COMMENT_NODE(8);
+ Node.DOCUMENT_NODE(9);
+ Node.DOCUMENT_TYPE_NODE(10);
+ Node.DOCUMENT_FRAGMENT_NODE(11); 
+ Node.NOTATION_NODE(12)。
+
+
+
+-nodeName nodeValue  tagName
+
+对于元素节点，nodeName 中保存的始终都是元素的标签名，而 nodeValue 的值则始终为 null
+
+-childNodes
+
+nodeList[0] 等同于 nodeList.items(0)
+
+parentNode
+
+nextSibling previousSibling
+
+firstChild lastChild
+
+所有节点都有的最后一个属性是 ownerDocument，该属性指向表示整个文档的文档节点
+
+
+下面四个方法操作的都是某个节点的子节点
+
+appendChild()  
+返回新增的节点
+
+insertBefore()方法。接受两个参数:要插入的节点和作为参照的节点,
+插入节点后，被插入的节点会变成参照节点的前一个同胞节点(previousSibling)，同时被方法返回。
+如果参照节点是 null，则 insertBefore()与 appendChild()执行相同的操作
+
+replaceChild()方法接受的两个参数是: 要插入的节点和要替换的节点。
+要替换的节点将由这个方法返回并从文档树中被移除，同时由要插入的节点占据其位置
+在使用 replaceChild()插入一个节点时，该节点的所有关系指针都会从被它替换的节点复制过来。
+尽管从技术上讲，被替换的节点仍然还在文档中，但它在文档中已经没有了自己的位置。
+
+removeChild()方法。这个方法接受一个参数，即要移除 的节点。被移除的节点将成为方法的返回值
+与使用 replaceChild()方法一样，通过 removeChild()移除的节点仍然为文档所有，
+只不过在文档中已经没有了自己的位置
+
+
+
+
+document.documentElement; //取得对<html>的引用
+document.body // 取得对body的引用
+document.doctype // 取得对<!DOCTYPE>引用
+document.title // 标题
+//取得完整的 URL
+var url = document.URL;
+var domain = document.domain;   // 可以设置, 但只能设置为主域
+//取得来源页面的 URL
+var referrer = document.referrer;
+
+
+⭐️
+当页面中包含来自其他子域的框架或内嵌框架时，能够设置document.domain就非常方便了。
+由于跨域安全限制，来自不同子域的页面无法通过 JavaScript 通信。
+而通过将每个页面的 document.domain 设置为相同的值，这些页面就可以互相访问对方包含的 JavaScript 对象了。
+例如，假设有一个页面加载自 www.wrox.com，其中包含一个内嵌框架，框架内的页面加载自 p2p.wrox.com。 
+由于 document.domain 字符串不一样，内外两个页面之间无法相互访问对方的 JavaScript 对象。
+但如果将这两个页面的 document.domain 值都设置为"wrox.com"，它们之间就可以通信了
+浏览器对 domain 属性还有一个限制，即如果域名一开始是“松散的”(loose)，那么不能将它再设置为“紧绷的”(tight)。
+换句话说，在将 document.domain 设置为"wrox.com"之后，就不能再将其 设置回"p2p.wrox.com"，否则将会导致错误
+
+
+除了属性和方法，document 对象还有一些特殊的集合。这些集合都是 HTMLCollection 对象， 
+为访问文档常用的部分提供了快捷方式，包括:
+ document.anchors，包含文档中所有带 name 特性的<a>元素;
+ document.applets，包含文档中所有的<applet>元素，因为不再推荐使用<applet>元素，
+所以这个集合已经不建议使用了;
+ document.forms，包含文档中所有的<form>元素，与 document.getElementsByTagName("form")
+得到的结果相同;
+document.images，包含文档中所有的<img>元素，与 document.getElementsByTagName
+("img")得到的结果相同;
+ document.links，包含文档中所有带 href 特性的<a>元素。
+
+
+dom 一致性检测
+document.implementation.hasFeature("XML", "1.0")
+
+文档写入
+体现在下列 4 个方法中:write()、writeln()、open()和 close()
+
+
+HTML
+
+每个 HTML 元素中都存在的下列标准特性。
+ id，元素在文档中的唯一标识符。
+ title，有关元素的附加说明信息，一般通过工具提示条显示出来。
+ lang，元素内容的语言代码，很少使用。
+ dir，语言的方向，值为"ltr"(left-to-right，从左至右)或"rtl"(right-to-left，从右至左)，
+也很少使用。
+ className，与元素的 class 特性对应，即为元素指定的 CSS 类。没有将这个属性命名为 class，
+是因为 class 是 ECMAScript 的保留字
+
+操作特性的 DOM 方法主要有三个，分别是 getAttribute()、setAttribute()和 removeAttribute()。
+这三 个方法可以针对任何特性使用，包括那些以 HTMLElement 类型属性的形式定义的特性
+
+attributes 属性
+
+要取得元素的 id 特性，可以使用以下代码。
+    var id = element.attributes.getNamedItem("id").nodeValue;
+  以下是使用方括号语法通过特性名称访问节点的简写方式。
+    var id = element.attributes["id"].nodeValue;
+
+调用 removeNamedItem()方法与在元素上调用 removeAttribute()方法的效果相同——直接删 除具有给定名称的特性。
+下面的例子展示了两个方法间唯一的区别，即 removeNamedItem()返回表示 被删除特性的 Attr 节点。
+var oldAttr = element.attributes.removeNamedItem("id");
+
+document.createElement()方法可以创建新元素
+document.createTextNode()创建新文本节点
+
+Text类型提供了一个作用与normalize()相反的方法:splitText(num)
+
+Comment 类型与 Text 类型继承自相同的基类，因此它拥有除 splitText()之外的所有字符串操
+ 作方法
+ 
+ document.createComment()并为其传递注释文本也可以创建注释节点
+
+CDATASection 类型继承自 Text 类型，因此拥有除 splitText()之外的所有字符串操作方法
+CDATA 区域只会出现在 XML 文档中
+
+
+
+轻量级文档
+document.createDocumentFragment()
+⭐️⭐️⭐️⭐️⭐️
+如果将文档中的节 点添加到文档片段中，就会从文档树中移除该节点，也不会从浏览器中再看到该节点。
+添加到文档片段 中的新节点同样也不属于文档树。
+可以通过 appendChild()或 insertBefore()将文档片段中内容添 加到文档中。
+在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有子节点添加到 相应位置上;
+文档片段本身永远不会成为文档树的一部分
+
+
+Attr 类型
+var attr = document.createAttribute("align");
+attr.value = "left";
+element.setAttributeNode(attr);
+alert(element.attributes["align"].value);       //"left"
+alert(element.getAttributeNode("align").value); //"left"
+alert(element.getAttribute("align"));        //"left"
+
+
+
+为<table>元素添加的属性和方法如下。
+ caption:保存着对<caption>元素(如果有)的指针。
+ tBodies:是一个<tbody>元素的 HTMLCollection。
+ tFoot:保存着对<tfoot>元素(如果有)的指针。
+ tHead:保存着对<thead>元素(如果有)的指针。
+ rows:是一个表格中所有行的 HTMLCollection。
+ createTHead():创建<thead>元素，将其放到表格中，返回引用。
+ createTFoot():创建<tfoot>元素，将其放到表格中，返回引用。
+ createCaption():创建<caption>元素，将其放到表格中，返回引用。  deleteTHead():删除<thead>元素。
+ deleteTFoot():删除<tfoot>元素。
+ deleteCaption():删除<caption>元素。
+ deleteRow(pos):删除指定位置的行。
+ insertRow(pos):向 rows 集合中的指定位置插入一行。
+为<tbody>元素添加的属性和方法如下。
+ rows:保存着<tbody>元素中行的 HTMLCollection。
+ deleteRow(pos):删除指定位置的行。
+ insertRow(pos):向 rows 集合中的指定位置插入一行，返回对新插入行的引用
+
+
+为<tr>元素添加的属性和方法如下。
+ cells:保存着<tr>元素中单元格的 HTMLCollection。
+ deleteCell(pos):删除指定位置的单元格。
+ insertCell(pos):向 cells 集合中的指定位置插入一个单元格，返回对新插入单元格的引用。
+ 
+```
+
+
+## Bom
+
+```
+窗口位置
+window.screenLeft window.screenTop
+
+窗口大小
+innerWidth、innerHeight、outerWidth 和 outerHeight
+
+通过dom提供页面可见区域相关信息
+document.documentElement.clientWidth 和 
+document.documentElement.clientHeight 中保存了页面视口的信息
+
+document.body.clientWidth 和 document.body. clientHeight
+
+```
+
+## form
+
+```
+HTMLFormElement 也有它自己下列独有的属性和方法。
+ acceptCharset:服务器能够处理的字符集;等价于 HTML 中的 accept-charset 特性。  action:接受请求的 URL;等价于 HTML 中的 action 特性。
+ elements:表单中所有控件的集合(HTMLCollection)。
+ enctype:请求的编码类型;等价于 HTML 中的 enctype 特性。
+ length:表单中控件的数量。
+ method:要发送的 HTTP 请求类型，通常是"get"或"post";等价于 HTML 的 method 特性。  name:表单的名称;等价于 HTML 的 name 特性。
+ reset():将所有表单域重置为默认值。
+ submit():提交表单。
+ target:用于发送请求和接收响应的窗口名称;等价于 HTML 的 target 特性。
+
+var firstForm = document.forms[0]; //取得页面中的第一个表单
+var myForm = document.forms["form2"]; //取得页面中名称为"form2"的表单
+
+调用 submit()方法的形式提交表单时，不会触发 submit 事件，因此要记得在调用此方法之 前先验证表单数据
+与调用 submit()方法不同，调用 reset()方法会像单击重置按钮一样触发 reset 事件。
+
+共有的表单字段属性
+
+除了<fieldset>元素之外，所有表单字段都拥有相同的一组属性。由于<input>类型可以表示多 种表单字段，因此有些属性只适用于某些字段，但还有一些属性是所有字段所共有的。表单字段共有的 属性如下。
+ disabled:布尔值，表示当前字段是否被禁用。
+ form:指向当前字段所属表单的指针;只读。
+ name:当前字段的名称。
+ readOnly:布尔值，表示当前字段是否只读。
+ tabIndex:表示当前字段的切换(tab)序号。
+ type:当前字段的类型，如"checkbox"、"radio"，等等。
+ value:当前字段将被提交给服务器的值。对文件字段来说，这个属性是只读的，包含着文件
+在计算机中的路径。
+
+每个表单字段都有两个方法:focus()和 blur()
+
+共有的表单字段事件
+除了支持鼠标、键盘、更改和 HTML 事件之外，所有表单字段都支持下列 3 个事件。
+ blur:当前字段失去焦点时触发。 change:对于<input>和<textarea>元素，在它们失去焦点且 value 值改变时触发;对于
+<select>元素，在其选项改变时触发。  focus:当前字段获得焦点时触发。
+
+
+
+input type="text" 和 textarea 区别
+
+必须将<input>元素的 type 特性设置为"text"。而通过设置 size 特性，可以指 定文本框中能够显示的字符数。
+通过 value 特性，可以设置文本框的初始值，而 maxlength 特性则用 于指定文本框可以接受的最大字符数。
+如果要创建一个文本框，让它能够显示 25 个字符，但输入不能 超过 50 个字符，可以使用以下代码:
+ 图灵社区会员 StinkBC(StinkBC@gmail.com) 专享 尊重版权
+
+<input type="text" size="25" maxlength="50" value="initial value">
+
+
+<textarea>元素则始终会呈现为一个多行文本框。要指定文本框的大小，可以使用 rows 和 cols 特性。其中，rows 特性指定的是文本框的字符行数，而 cols 特性指定的是文本框的字符列数 (类似于<inpu>元素的 size 特性)。与<input>元素不同，<textarea>的初始值必须要放在
+<textarea>和</textarea>之间，如下面的例子所示。 <textarea rows="25" cols="5">initial value</textarea>
+另一个与<input>的区别在于，不能在 HTML 中给<textarea>指定最大字符数。
+无论这两种文本框在标记中有什么区别，但它们都会将用户输入的内容保存在 value 属性中。可 以通过这个属性读取和设置文本框的值，如下面的例子所示:
+     var textbox = document.forms[0].elements["textbox1"];
+     alert(textbox.value);
+     textbox.value = "Some new value";
+我们建议读者像上面这样使用 value 属性读取或设置文本框的值，不建议使用标准的 DOM 方法。 换句话说，不要使用 setAttribute()设置<input>元素的 value 特性，也不要去修改<textarea> 元素的第一个子节点。原因很简单:对 value 属性所作的修改，不一定会反映在 DOM 中。因此，在处 理文本框的值时，最好不要使用 DOM 方法。
+
+
+上述两种文本框都支持 select()方法，这个方法用于选择文本框中的所有文本。在调用 select() 方法时，大多数浏览器(Opera 除外)都会将焦点设置到文本框中。
+
+selectionStart 和 selectionEnd
+
+现在除 select()方法之外，所有文本框都有一个 setSelectionRange() 方法。
+这个方法接收两个参数:要选择的第一个字符的索引和要选择的最后一个字符之后的字符的索引
+
+textbox.value = "Hello world!"
+//选择所有文本
+textbox.setSelectionRange(0, textbox.value.length); //"Hello world!"
+//选择前 3 个字符 textbox.setSelectionRange(0, 3); //"Hel"
+//选择第4到第6个字符 textbox.setSelectionRange(4, 7); //"o w"
+
+
+
+可以通过下列代码屏蔽所有按键操作。
+ EventUtil.addHandler(textbox, "keypress", function(event){
+    event = EventUtil.getEvent(event);
+    EventUtil.preventDefault(event);
+});
+
+例如，下列代码只允许 用户输入数值。
+EventUtil.addHandler(textbox, "keypress", function(event){ 
+event = EventUtil.getEvent(event);
+var target = EventUtil.getTarget(event);
+var charCode = EventUtil.getCharCode(event);
+     
+        if (!/\d/.test(String.fromCharCode(charCode)) && charCode > 9 &&
+                 !event.ctrlKey){
+  			EventUtil.preventDefault(event);
+	}
+});
+
+
+下列就是 6 个剪贴板事件。 
+ beforecopy:在发生复制操作前触发。
+ copy:在发生复制操作时触发。
+ beforecut:在发生剪切操作前触发。
+ cut:在发生剪切操作时触发。
+ beforepaste:在发生粘贴操作前触发。 
+ paste:在发生粘贴操作时触发
+
+
+
+选择框的 change 事件与其他表单字段的 change 事件触发的 条件不一样。
+其他表单字段的 change 事件是在值被修改且焦点离开当前字段时触发，
+而选择框的 change 事件只要选中了选项就会触发
+
+
+移除 option
+selectbox.removeChild(selectbox.options[0]); //移除第一个选项 
+其次，可以使用选择框的 remove()方法。
+这个方法接受一个参数，即要移除选项的索引，如下面的例子所示:
+selectbox.remove(0); //移除第一个选项
+最后一种方式，就是将相应选项设置为 null。这种方式也是 DOM 出现之前浏览器的遗留机制。
+ 例如:
+selectbox.options[0] = null; //移除第一个选项
+  要清除选择框中所有的项，需要迭代所有选项并逐个移除它们，如下面的例子所示:
+    function clearSelectbox(selectbox){
+        for(var i=0, len=selectbox.options.length; i < len; i++){
+            selectbox.remove(i);
+        }
+}
+
+富文本编辑
+
+1
+<iframe name="richedit" style="height:100px;width:100px;" src="blank.htm"></iframe>
+    <script type="text/javascript">
+    EventUtil.addHandler(window, "load", function(){
+        frames["richedit"].document.designMode = "on";
+    });
+</script>
+
+2.
+<div class="editable" id="richedit" contenteditable></div>
+与富文本编辑器交互的主要方式，就是使用 document.execCommand()。
+这个方法可以对文档执 行预定义的命令，而且可以应用大多数格式。
+可以为 document.execCommand()方法
+传递 3 个参数: 要执行的命令名称、表示浏览器是否应该为当前命令提供用户界面的一个布尔值
+和执行命令必须的一个 值(如果不需要值，则传递 null)。
+
+
+
+```
+
+
+
+## JavaScript笔试部分:
+
+```
+
+https://juejin.im/post/5d51e16d6fb9a06ae17d6bbc
+https://juejin.im/post/5cef46226fb9a07eaf2b7516
+https://juejin.im/post/5d469e0851882544b85c32ef
+https://juejin.im/post/5d46a94e6fb9a06b24430027
+
+
+Mithril、Inferno、Angular、React、Aurelia、Vue 和 Polymer
+我发现最简单的方法是从你选择的库中选择一个方法，并记录当你调用它时会发生什么。不要每一个步骤都记录，而是尝试理解它的整体流程和结构。
+
+
+```
+
+## 文章收集
+
+
+[前端开发规范](https://yq.aliyun.com/articles/51488)
+
+[推荐的vue ui库](https://segmentfault.com/a/1190000015423178?utm_source=tag-newest)
+
+[css总结](https://juejin.im/post/5d3eca78e51d4561cb5dde12)
+
+[Js总结](https://juejin.im/post/5d54e78be51d4561b072dce6)
+
+[Js原生api实现](https://juejin.im/post/5d635566e51d4561e224a360)
+
+[前端推荐文章](https://juejin.im/post/5d387f696fb9a07eeb13ea60)
+
+[一个框架](https://yoxjs.github.io/yox/#/)
+
+[前端100题](https://juejin.im/post/5d23e750f265da1b855c7bbe)
+
+[Vue 面试题](https://juejin.im/post/5d59f2a451882549be53b170)
+
+[HTML/CSS/JS编码规范](https://juejin.im/post/599ececb5188252423583c27#heading-55)
+
+[Less 常用语法](https://www.jianshu.com/p/d81496ed0e29)
+
+[简易mvvm](https://www.cnblogs.com/canfoo/p/6891868.html)
+
+[Js设计模式](https://juejin.im/post/5d58ca046fb9a06ad0056cc7)
+
+[vue目录解构](https://juejin.im/post/5d5a44f0e51d456201486e41)
+
+[腾讯code guider](http://alloyteam.github.io/CodeGuide/#js-miscellaneous)
+
+[虚拟dom](https://juejin.im/post/5d3f3bf36fb9a06af824b3e2)
+
+[前端协作规范](https://juejin.im/post/5d3a7134f265da1b5d57f1ed#heading-27)
+
+[干货](https://juejin.im/post/5d3edad9f265da03a652f133)
+
+
+
+
+
+
+
+

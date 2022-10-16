@@ -408,9 +408,308 @@ html[data-theme='dark']:root {
 
 ```
 
-   
 
 
+
+
+# css
+
+
+
+####  visibility : collapse
+
+它的表现跟visibility：hidden;是一样的。元素是不可见的，但此时仍占用页面空间
+
+但例外的是，如果这个元素是table相关的元素，例如table行，table group，table列，table column group，它的
+表现却跟display:none一样，也就是说，它们占用的空间也会释放。
+
+在不同浏览器下的区别：
+
+在谷歌浏览器里，使用collapse值和使用hidden值没有什么区别。
+
+在火狐浏览器、Opera和IE11里，使用collapse值的效果就如它的字面意思：table的行会消失，它的下面一行会补充它的位
+置。
+
+
+
+#### width:auto 和 width:100%的区别
+
+width:100%会使元素box的宽度等于父元素的content box的宽度。
+
+width:auto会使元素撑满整个父元素，margin、border、padding、content区域会自动分配水平空间。
+
+
+
+#### 绝对定位元素与非绝对定位元素的百分比计算的区别
+
+绝对定位元素的宽高百分比是相对于临近的position不为static的祖先元素的padding box来计算的。
+
+非绝对定位元素的宽高百分比则是相对于父元素的content box来计算的。
+
+
+
+
+
+#### base64 编码的优点和缺点
+
+优点是：
+
+（1）减少一个图片的HTTP请求
+
+缺点是：
+
+（1）根据base64的编码原理，编码后的大小会比原文件大小大1/3，如果把大图片编码到html/css中，不仅会造成文件体
+积的增加，影响文件的加载速度，还会增加浏览器对html或css文件解析渲染的时间。
+
+（2）使用base64无法直接缓存，要缓存只能缓存包含base64的文件，比如HTML或者CSS，这相比域直接缓存图片的效果要
+差很多。
+
+（3）兼容性的问题，ie8以前的浏览器不支持。
+
+
+
+#### margin重叠
+
+1. 外层元素padding代替
+2. 外层元素透明边框 border:1px solid transparent;
+3. 内层元素绝对定位 postion:absolute:
+4. 外层元素 overflow:hidden;display: flex|inline-flex
+5. 内层元素 加float:left;或display:inline-block|table-cell或table-caption
+6. 外层元素padding:1px;
+
+BFC指的是块级格式化上下文，一个元素形成了BFC之后，那么它内部元素产生的布局不会影响到外部元素，外部元素的布局也
+不会影响到BFC中的内部元素。一个BFC就像是一个隔离区域，和其他区域互不影响。
+
+一般来说根元素是一个BFC区域，浮动和绝对定位的元素也会形成BFC，display属性的值为inline-block、flex这些
+属性时也会创建BFC。还有就是元素的overflow的值不为visible时都会创建BFC。
+
+
+
+####  clear 属性清除浮动的原理
+
+clear:none|left|right|both
+
+如果单看字面意思，clear:left应该是“清除左浮动”，clear:right应该是“清除右浮动”的意思，实际上，这种解释是有问
+题的，因为浮动一直还在，并没有清除。
+
+官方对clear属性的解释是：“元素盒子的边不能和前面的浮动元素相邻。”，我们对元素设置clear属性是为了避免浮动元素
+对该元素的影响，而不是清除掉浮动。
+
+还需要注意的一点是clear属性指的是元素盒子的边不能和前面的浮动元素相邻，注意这里“前面的”3个字，也就是clear属
+性对“后面的”浮动元素是不闻不问的。考虑到float属性要么是left，要么是right，不可能同时存在，同时由于clear
+属性对“后面的”浮动元素不闻不问，因此，当clear:left有效的时候，clear:right必定无效，也就是此时clear:left
+等同于设置clear:both；同样地，clear:right如果有效也是等同于设置clear:both。由此可见，clear:left和cle
+ar:right这两个声明就没有任何使用的价值，至少在CSS世界中是如此，直接使用clear:both吧。
+
+一般使用伪元素的方式清除浮动
+
+```css
+.clear::after{
+  content:'';
+  display:table; //也可以是'block'，或者是'list-item'
+  clear:both;
+}
+```
+
+clear属性只有块级元素才有效的，而::after等伪元素默认都是内联水平，这就是借助伪元素清除浮动影响时需要设置disp
+lay属性值的原因。
+
+
+
+#### zoom:1 的清除浮动原理
+
+清除浮动，触发hasLayout；
+zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。譬如外边距（margin）
+的重叠，浮动清除，触发ie的haslayout属性等。
+
+来龙去脉大概如下：
+当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发
+生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。
+
+zoom属性是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标
+准化，出现在CSS3.0规范草案中。
+
+目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？可以通过css3里面的动画属性scale进行缩放。
+
+
+
+#### CSS 优化、提高性能的方法
+
+##### 加载性能：
+
+（1）css压缩：将写好的css进行打包压缩，可以减少很多的体积。
+（2）css单一样式：当需要下边距和左边距的时候，很多时候选择:margin:top 0 bottom 0;但margin-bottom:bot
+tom;margin-left:left;执行的效率更高。
+（3）减少使用@import,而建议使用link，因为后者在页面加载时一起加载，前者是等待页面加载完成之后再进行加载。
+
+##### 选择器性能：
+
+（1）关键选择器（key selector）。选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）。CSS选择符是从右到
+左进行匹配的。当使用后代选择器的时候，浏览器会遍历所有子元素来确定是否是指定的元素等等；
+
+（2）如果规则拥有ID选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹
+配它们了）。
+
+（3）避免使用通配规则，如*{}计算次数惊人！只对需要用到的元素进行选择。
+
+（4）尽量少的去对标签进行选择，而是用class。
+
+（5）尽量少的去使用后代选择器，降低选择器的权重值。后代选择器的开销是最高的，尽量将选择器的深度降到最低，最高不要超过
+三层，更多的使用类来关联每一个标签元素。
+
+（6）了解哪些属性是可以通过继承而来的，然后避免对这些属性重复指定规则。
+
+##### 渲染性能：
+
+（1）慎重使用高性能属性：浮动、定位。
+
+（2）尽量减少页面重排、重绘。
+
+（3）去除空规则：｛｝。空规则的产生原因一般来说是为了预留样式。去除这些空规则无疑能减少css文档体积。
+
+（4）属性值为0时，不加单位。
+
+（5）属性值为浮动小数0.**，可以省略小数点之前的0。
+
+（6）标准化各种浏览器前缀：带浏览器前缀的在前。标准属性在后。
+
+（7）不使用@import前缀，它会影响css的加载速度。
+
+（8）选择器优化嵌套，尽量避免层级过深。
+
+（9）css雪碧图，同一页面相近部分的小图标，方便使用，减少页面的请求次数，但是同时图片本身会变大，使用时，优劣考虑清
+楚，再使用。
+
+（10）正确使用display的属性，由于display的作用，某些样式组合会无效，徒增样式体积的同时也影响解析性能。
+
+（11）不滥用web字体。对于中文网站来说WebFonts可能很陌生，国外却很流行。web fonts通常体积庞大，而且一些浏
+览器在下载web fonts时会阻塞页面渲染损伤性能。
+
+##### 可维护性、健壮性：
+
+（1）将具有相同属性的样式抽离出来，整合并通过class在页面中进行使用，提高css的可维护性。
+（2）样式与内容分离：将css代码定义到外部css中。
+
+
+
+#### flex
+
+##### 父项常用属性
+
+- flex-direction：设置主轴的方向
+- justify-content：设置主轴上的子元素排列方式 flex-start flex-end center space-around space-between
+- flex-wrap：设置子元素是否换行
+- align-content：设置侧轴上的子元素的排列方式（多行）
+- align-items：设置侧轴上的子元素排列方式（单行）
+- flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap
+
+space-around：项目之间的间距为左右两侧项目到容器间距的2倍
+
+space-evenly：项目两侧之间的间距与项目与容器两侧的间距相等，相当于除去项目宽度和容器和项目的两侧间距，剩下的平均分配了剩余宽度作为项目左右margin
+
+
+
+##### 子项常见属性
+
+- flex(复合属性): 默认: flex: 0 1 auto;
+    - flex-grow
+    - flex-shrink
+    - flex-basis
+- align-self：控制子项自己在侧轴的排列方式
+- order：定义子项的排列顺序(前后顺序), 0是第一个
+
+**flex-grow**
+
+> 默认0，用于决定项目在有剩余空间的情况下是否放大，默认不放大；注意，即便设置了固定宽度，也会放大。
+
+**flex-shrink**
+
+> 默认1，用于决定项目在空间不足时是否缩小，默认项目都是1，即空间不足时大家一起等比缩小；注意，即便设置了固定宽度，也会缩小。但如果某个项目flex-shrink设置为0，则即便空间不够，自身也不缩小。
+
+**flex-basis**
+
+> 默认auto，用于设置项目宽度，默认auto时，项目会保持默认宽度，或者以width为自身的宽度，但如果设置了flex-basis，权重会width属性高，因此会覆盖widtn属性。
+
+
+
+#### Transform
+
+- 透视：`perspctive`
+- 3D呈现：`transfrom-style`
+- 3D 位移：`translate3d(x, y, z)`
+- 3D旋转：`rotate3d(x, y, z)`
+
+https://juejin.im/post/6888102016007176200?utm_source=gold_browser_extension#heading-8
+
+
+
+#### animation
+
+/* animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 起始与结束状态 */
+animation: name duration timing-function delay iteration-count direction fill-mode
+
+
+
+
+
+#### 哪些些属性值会具有BFC的条件
+
+> 不是所有的元素模式都能产生BFC，w3c 规范： display 属性为 block, list-item, table 的元素，会产生BFC.
+
+要给这些元素添加如下属性就可以触发BFC。
+
+- float属性不为none
+- position为absolute或fixed
+- display为inline-block, table-cell, table-caption, flex, inline-flex
+- overflow不为visible。
+
+BFC布局规则特性：
+
+- 在BFC中，盒子从顶端开始垂直地一个接一个地排列
+- 盒子垂直方向的距离由margin决定。**属于同一个BFC的两个相邻盒子的margin会发生重叠**
+- 在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)（对于从右到左的格式来说，则触碰到右边缘）。
+    - BFC的区域不会与浮动盒子产生交集，而是紧贴浮动边缘。
+    - 计算BFC的高度时，自然也会检测浮动或者定位的盒子高度
+
+它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
+
+
+
+#### 硬件加速的原理
+
+> 浏览器接收到页面文档后，会将文档中的标记语言解析为DOM树。DOM树和CSS结合后形成浏览器构建页面的渲染树。渲染树中包含大量的渲染元素，每个渲染元素会被分到一个图层中，每个图层又会被加载到GPU形成渲染纹理，而图层在GPU中transform是不会触发repaint的，最终这些使用transform的图层都会由独立的合成器进程进行处理, CSS transform会**创建了一个新的复合图层，可以被GPU直接用来执行transform操作**。
+
+**浏览器什么时候会创建一个独立的复合图层呢？事实上一般是在以下几种情况下：**
+
+- 3D或者CSS transform
+- `<video>`和`<canvas>`标签
+- `css filters(滤镜效果)`
+- 元素覆盖时，比如使用了z-index属性
+
+##### 为什么硬件加速会使页面流畅
+
+> 因为transform属性不会触发浏览器的repaint（重绘），而绝对定位absolute中的left和top则会一直触发repaint（重绘）。
+
+##### 为什么transform没有触发repaint呢？
+
+> 简而言之，transform动画由GPU控制，支持硬件加载，并不需要软件方面的渲染。**并不是所有的CSS属性都能触发GPU的硬件加载，事实上只有少数的属性可以，比如transform、opacity、filter**
+
+##### 如何用CSS开启硬件加速
+
+> CSS animation、transform以及transition不会自动开启GPU加速，而是由浏览器的缓慢的软件渲染引擎来执行，那我们怎样才可以切换到GPU模式呢，很多浏览器提供了某些触发的CSS规则。
+
+当浏览器检测到页面中某个DOM元素应用了某些CSS规则时就会开启，最显著的特征的元素是3D变化。
+
+```css
+.cube{
+    translate3d(250px,250px,250px);
+    rotate3d(250px,250px,250px,-120deg)
+    scale3d(0.5,0.5,0.5);
+}
+复制代码
+```
+
+> 可能在一些情况下，我们并不需要对元素应用3D变幻的效果，那怎么办呢?这时候我们可以使用“欺骗”浏览器来开启硬件加速。虽然我们可能不想对元素应用3D变幻，可我们一样可以开启3D引擎。例如我们可以用`transform:translateZ(0)`;来开启硬件加速
 
 
 
