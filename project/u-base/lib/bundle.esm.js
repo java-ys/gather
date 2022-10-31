@@ -1,10 +1,6 @@
 
 (function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-/*! *****************************************************************************
+/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -23,11 +19,13 @@ PERFORMANCE OF THIS SOFTWARE.
 var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
     return extendStatics(d, b);
 };
 
 function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
     extendStatics(d, b);
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -50,6 +48,7 @@ function __read(o, n) {
     return ar;
 }
 
+/** @deprecated */
 function __spread() {
     for (var ar = [], i = 0; i < arguments.length; i++)
         ar = ar.concat(__read(arguments[i]));
@@ -275,25 +274,5 @@ var baseTool = {
 };
 var tool = baseTool;
 
-exports.ErrorResult = ErrorResult;
-exports.compose = compose;
-exports.countDaysInMonth = countDaysInMonth;
-exports.curry = curry;
-exports.deepGet = deepGet;
-exports.extend = extend;
-exports.filterObj = filterObj;
-exports.getObjKeys = getObjKeys;
-exports.isArray = isArray;
-exports.isFunction = isFunction;
-exports.isPlainObject = isPlainObject;
-exports.isString = isString;
-exports.map = map;
-exports.num = num;
-exports.omit = omit;
-exports.partial = partial;
-exports.pick = pick;
-exports.tool = tool;
-exports.ymd = ymd;
-exports.ymdFull = ymdFull;
-exports.zeroFill = zeroFill;
-//# sourceMappingURL=bundle.cjs.js.map
+export { ErrorResult, compose, countDaysInMonth, curry, deepGet, extend, filterObj, getObjKeys, isArray, isFunction, isPlainObject, isString, map, num, omit, partial, pick, tool, ymd, ymdFull, zeroFill };
+//# sourceMappingURL=bundle.esm.js.map

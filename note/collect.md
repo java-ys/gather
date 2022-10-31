@@ -1605,6 +1605,53 @@ Mithril、Inferno、Angular、React、Aurelia、Vue 和 Polymer
 
 
 
+## document.execCommand
 
 
+
+| 命令                      | 解释                                                         | 参数                                                         |
+| ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| backColor                 | 修改文档的背景颜色。需要一个 类型的字符串值作为参数传入。    | #ff0000                                                      |
+| bold                      | 开启或关闭选中文字或插入点的粗体字效果。                     | null                                                         |
+| copy                      | 拷贝当前选中内容到剪贴板。                                   | null                                                         |
+| createLink                | 将选中内容创建为一个锚链接。                                 | [www.baidu.com](https://link.juejin.cn/?target=http%3A%2F%2Fwww.baidu.com) |
+| cut                       | 剪贴当前选中的文字并复制到剪贴板。                           | null                                                         |
+| delete                    | 删除选中部分.                                                | null                                                         |
+| fontName                  | 在插入点或者选中文字部分修改字体名称.                        | Arial                                                        |
+| fontSize                  | 在插入点或者选中文字部分修改字体大小. 需要提供一个HTML字体尺寸 (1-7) 作为参数。 | 6                                                            |
+| foreColor                 | 在插入点或者选中文字部分修改字体颜色. 需要提供一个颜色值字符串作为参数。 | #ff0000                                                      |
+| formatBlock               | 添加一个HTML块式标签在包含当前选择的行                       |                                                              |
+| forwardDelete             | 删除光标所在位置的字符。 和按下删除键一样。                  | null                                                         |
+| heading                   | 添加一个标题标签在光标处或者所选文字上。                     | H6                                                           |
+| hiliteColor               | 更改选择或插入点的背景颜色。                                 | #dddddd                                                      |
+| indent                    | 缩进选择或插入点所在的行                                     | null                                                         |
+| insertHorizontalRule      | 在插入点插入一个水平线                                       | null                                                         |
+| insertHTML                | 在插入点插入一个HTML字符串                                   | < p>I Am A P< /p>                                            |
+| insertImage               | 在插入点插入一张图片                                         | 图片链接                                                     |
+| insertOrderedList         | 创建一个有序列表                                             | null                                                         |
+| insertUnorderedList       | 创建一个无序列表                                             | null                                                         |
+| insertParagraph           | 在选择或当前行周围插入一个段落                               | null                                                         |
+| insertText                | 在光标插入位置插入文本内容或者覆盖所选的文本内容。           | 插入内容                                                     |
+| italic                    | 在光标插入点开启或关闭斜体字。                               | null                                                         |
+| justifyCenter             | 对光标插入位置或者所选内容进行文字居中。                     | null                                                         |
+| justifyFull               | 对光标插入位置或者所选内容进行文本对齐。                     | null                                                         |
+| justifyLeft               | 对光标插入位置或者所选内容进行左对齐。                       | null                                                         |
+| justifyRight              | 对光标插入位置或者所选内容进行右对齐。                       | null                                                         |
+| outdent                   | 对光标插入行或者所选行内容减少缩进量。                       | null                                                         |
+| paste                     | 在光标位置粘贴剪贴板的内容。                                 | null                                                         |
+| redo                      | 重做被撤销的操作。                                           | null                                                         |
+| removeFormat              | 对所选内容去除所有格式                                       | null                                                         |
+| selectAll                 | 选中编辑区里的全部内容。                                     | null                                                         |
+| strikeThrough             | 在光标插入点开启或关闭删除线。                               | null                                                         |
+| subscript                 | 在光标插入点开启或关闭下角标。                               | null                                                         |
+| superscript               | 在光标插入点开启或关闭上角标。                               | null                                                         |
+| underline                 | 在光标插入点开启或关闭下划线。                               | null                                                         |
+| undo                      | 撤销最近执行的命令。                                         | null                                                         |
+| unlink                    | 去除所选的锚链接的[标签](https://link.juejin.cn/?target=)    | null                                                         |
+| contentReadOnly           | 通过传入一个布尔类型的参数来使能文档内容的可编辑性。(IE浏览器不支持) | true                                                         |
+| decreaseFontSize          | 给选中文字加上 < small > 标签，或在选中点插入该标签。        | null                                                         |
+| defaultParagraphSeparator | 更改在可编辑文本区域中创建新段落时使用的段落分隔符。         | [标记生成的差异](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FGuide%2FHTML%2FContent_Editable%23Differences_in_markup_generation) |
+| enableInlineTableEditing  | 启用或禁用表格行和列插入和删除控件。                         | null                                                         |
+| enableObjectResizing      | 启用或禁用图像和其他对象的大小可调整                         | null                                                         |
+| increaseFontSize          | 在选择或插入点周围添加一个BIG标签。                          | null                                                         |
 

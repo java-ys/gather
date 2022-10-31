@@ -18,6 +18,7 @@ import num from './num';
 import partial from './partial';
 import curry from './curry';
 import {ymd, ymdFull, countDaysInMonth} from './date';
+import * as arr from './arr';
 
 export {
   partial,
@@ -40,4 +41,5 @@ export {
   deepGet,
   filterObj,
   ErrorResult,
+    arr
 };
