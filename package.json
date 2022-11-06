@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "http-server --proxy http://localhost:2233"
+    "dev": "http-server --proxy"
   },
   "repository": {
     "type": "git",
