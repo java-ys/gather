@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "http-server --proxy"
+    "dev": "http-server --proxy 1234"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/best-time/gather/issues"
   },
-  "homepage": "https://github.com/best-time/gather#readme"
+  "homepage": "https://github.com/best-time/gather#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
