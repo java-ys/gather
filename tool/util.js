@@ -2211,4 +2211,56 @@ class MyCache {
 
 })();(function () {})();(function () {})();(
   function () {}
+
+ // 要将文本复制到剪贴板，只需调用 writeText()
+
+async function copyPageUrl() {
+  try {
+    await navigator.clipboard.writeText(location.href);
+    console.log('Page URL copied to clipboard');
+  } catch (err) {
+    console.error('Failed to copy: ', err);
+  }
+}
+// 读取文本
+async function getClipboardContents() {
+  try {
+    const text = await navigator.clipboard.readText();
+    console.log('Pasted content: ', text);
+  } catch (err) {
+    console.error('Failed to read clipboard contents: ', err);
+  }
+}
+
+
+ const get = (from, ...selectors) =>
+       [...selectors].map(s =>
+         s
+       .replace(/\[([^\[\]]*)\]/g, '.$1.')
+       .split('.')
+       .filter(t => t !== '')
+       .reduce((prev, cur) => prev && prev[cur], from)
+   );
+ const obj = { selector: { to: { val: 'val to select' } }, target: [1, 2, { a: 'test' }] };
+
+ // Example
+ get(obj, 'selector.to.val', 'target[0]', 'target[2].a');
+ // ['val to select', 1, 'test']
+
+
+
+
+ const elementIsVisibleInViewport = (el, partiallyVisible = false) => {
+     const { top, left, bottom, right } = el.getBoundingClientRect();
+     const { innerHeight, innerWidth } = window;
+     return partiallyVisible
+       ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+               ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+           : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+   };
+
+ // 事例
+ elementIsVisibleInViewport(el); // 需要左右可见
+ elementIsVisibleInViewport(el, true); // 需要全屏(上下左右)可以见
+
 )();
