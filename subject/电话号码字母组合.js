@@ -50,7 +50,7 @@ var letterCombinations = function(digits) { // [abc] [def]
     return queue
 };
 
-letterCombinations('234')
+letterCombinations('23')
 
 const letterCombinations2 = (digits) => {
     if (digits.length === 0) return [];

@@ -1,5 +1,0 @@
-export const SET_ERROR_STACK = 'application/SET_ERROR_STACK'
-export const SET_MICRO_MENU_ROUTE_LIST = 'application/SET_MICRO_MENU_ROUTE_LIST'
-export const SET_LIMIT_MENU_DATA = 'application/SET_LIMIT_MENU_DATA'
-export const SET_SUB_ROUTE_DATA = 'application/SET_SUB_ROUTE_DATA'
-export const SET_APPLICATION_ROUTERS = 'application/SET_APPLICATION_ROUTERS'

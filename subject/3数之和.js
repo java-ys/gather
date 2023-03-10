@@ -8,6 +8,8 @@
  解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2) 。
  */
 
+// 双指针
+
 let threeSumClosest = function(nums, target) {
     nums.sort((a,b)=>a-b);
     let result = nums[0] + nums[1] + nums[2] // 最小3数和
