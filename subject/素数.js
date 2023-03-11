@@ -15,7 +15,7 @@ function get(n) {
   let count = 0;
   for (let i = 2; i < n; i++) {
     // [2, n-1]
-    count += isPrime(i) ? 1 : 0;
+    count += isPrime(i) ? 1 : 0
   }
   console.log(count);
   return count;
