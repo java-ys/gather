@@ -74,3 +74,16 @@ function minClimbingStairs2(cost) {
 }
 
 console.log(minClimbingStairs2(cost1))
+
+
+
+
+
+// 3: 011  k 1
+// 1: 001
+// 2: 010
+// 4: 100
+
+
+
+
